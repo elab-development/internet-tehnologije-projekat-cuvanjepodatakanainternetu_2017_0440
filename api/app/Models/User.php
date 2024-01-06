@@ -18,10 +18,20 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'ime', 'prezime', 'email', 'lozinka', 'firma_id', 'uloga', 'one_drive_token'
     ];
+
+    // Veza sa firmom
+    public function firma()
+    {
+        return $this->belongsTo(Firma::class);
+    }
+
+    // Veza sa fajlovima
+    public function fajlovi()
+    {
+        return $this->hasMany(Fajl::class);
+    }
 
     /**
      * The attributes that should be hidden for serialization.
