@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('naziv');
             $table->string('adresa');
+            $table->string('PIB');
+            $table->string('logo');
             $table->unsignedBigInteger('vlasnik_id');
             $table->timestamps();
         
