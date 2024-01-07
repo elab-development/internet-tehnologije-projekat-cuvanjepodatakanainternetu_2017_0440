@@ -13,8 +13,8 @@ class Firma extends Model
         'naziv', 'adresa', 'vlasnik_id','PIB','logo'
     ];
 
-    // Veza sa korisnicima
-    public function korisnici()
+    // Veza sa korisnicima - zaposlenima
+    public function zaposleni()
     {
         return $this->hasMany(User::class);
     }
@@ -24,4 +24,11 @@ class Firma extends Model
     {
         return $this->hasMany(Fajl::class);
     }
+
+    // Veza sa korisnicima - vlasnik
+    public function vlasnik()
+    {
+        return $this->belongsTo(User::class,'vlasnik_id');
+    }
+
 }
