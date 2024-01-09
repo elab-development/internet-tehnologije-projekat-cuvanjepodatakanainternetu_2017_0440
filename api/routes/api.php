@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FajlController;
 use App\Http\Controllers\FirmaController;
+use App\Http\Controllers\RadiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,9 @@ Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logou
 Route::resource('firme', FirmaController::class);
 Route::get('fajlovi/pretraga', [FajlController::class,'pretrazi']);
 Route::resource('fajlovi', FajlController::class);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('radi')->group(function () {
+    Route::post('/', [RadiController::class, 'store']);
+    Route::get('/{firma_id}', [RadiController::class, 'index']);
 });
+
+ 
