@@ -155,4 +155,36 @@ class FajlController extends Controller
 
         return response()->json(['message' => 'Fajl deleted'], 200);
     }
+
+
+
+    public function pretrazi(Request $request)
+{
+    $query = Fajl::query();
+
+ 
+    if ($request->has('tip')) {
+        $query->where('tip', $request->input('tip'));
+    }
+
+ 
+    if ($request->has('firma_id')) {
+        $query->where('firma_id', $request->input('firma_id'));
+    }
+
+ 
+    if ($request->has('korisnik_id')) {
+        $query->where('korisnik_id', $request->input('korisnik_id'));
+    }
+
+ 
+    if ($request->has('naziv')) {
+        $query->where('naziv', 'LIKE', '%' . $request->input('naziv') . '%');
+    }
+
+    $fajlovi = $query->get();
+
+    return response()->json(['fajlovi' => FajlResource::collection($fajlovi)], 200);
+}
+
 }
