@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'ime', 'prezime', 'email', 'lozinka', 'firma_id', 'uloga', 'one_drive_token'
+        'ime', 'prezime', 'email', 'password', 'firma_id', 'uloga', 'one_drive_token'
     ];
 
     // Veza sa firmom
@@ -39,7 +39,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'lozinka',
+        'password',
         'remember_token',
     ];
 

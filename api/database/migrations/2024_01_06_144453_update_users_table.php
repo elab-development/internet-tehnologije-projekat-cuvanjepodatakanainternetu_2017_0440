@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('ime');
             $table->string('prezime');
-            $table->string('uloga');
+            $table->string('role');
             $table->string('one_drive_token')->nullable();
             
         });
@@ -32,7 +32,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->removeColumn('ime');
             $table->removeColumn('prezime');
-            $table->removeColumn('uloga');
+            $table->removeColumn('role');
             $table->removeColumn('one_drive_token');
         
         });

@@ -15,7 +15,7 @@ class AuthController extends Controller
             'ime' => 'required|string|max:255',
             'prezime' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'lozinka' => 'required|string|min:8',
+            'password' => 'required|string|min:8',
             
             'uloga' => 'required|string',
         ]);
@@ -28,7 +28,7 @@ class AuthController extends Controller
             'ime' => $request->input('ime'),
             'prezime' => $request->input('prezime'),
             'email' => $request->input('email'),
-            'lozinka' => bcrypt($request->input('lozinka')),
+            'password' => bcrypt($request->input('password')),
             
             'uloga' => $request->input('uloga'),
         ]);
@@ -38,7 +38,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->only(['email', 'lozinka']);
+        $credentials = $request->only(['email', 'password']);
     
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
