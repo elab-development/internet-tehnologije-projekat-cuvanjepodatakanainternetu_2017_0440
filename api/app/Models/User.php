@@ -39,7 +39,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
+        'lozinka',
         'remember_token',
     ];
 
@@ -51,4 +51,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAuthPassword()
+{
+    return $this->lozinka;
+}
 }

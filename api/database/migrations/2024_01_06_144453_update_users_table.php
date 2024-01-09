@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('prezime');
             $table->string('uloga');
             $table->string('one_drive_token')->nullable();
+            
         });
     }
 
@@ -33,6 +34,7 @@ return new class extends Migration
             $table->removeColumn('prezime');
             $table->removeColumn('uloga');
             $table->removeColumn('one_drive_token');
+        
         });
     }
 };

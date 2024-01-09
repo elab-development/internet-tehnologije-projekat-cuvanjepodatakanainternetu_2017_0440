@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\FajlController;
 use App\Http\Controllers\FirmaController;
 use Illuminate\Http\Request;
@@ -15,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('register', [AuthController::class, 'register']);
+Route::post('login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
+
+
 
 Route::resource('firme', FirmaController::class);
 Route::get('fajlovi/pretraga', [FajlController::class,'pretrazi']);
