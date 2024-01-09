@@ -15,6 +15,8 @@ class FirmaSeeder extends Seeder
      */
     public function run()
     {
+
+        //unosimo nase firme sa podacima koje sami zelimo
         $firme = [
             [
                 'naziv' => 'Firma1',
@@ -56,5 +58,9 @@ class FirmaSeeder extends Seeder
         foreach ($firme as $firma) {
              Firma::create($firma);
         }
+
+
+        //unos firmi uz pomoc factoryija
+        Firma::factory(5)->create();
     }
 }

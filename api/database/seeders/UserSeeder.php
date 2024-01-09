@@ -20,8 +20,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Pera',
                 'prezime' => 'Perić',
                 'email' => 'pera@gmail.com',
-                'lozinka' => bcrypt('lozinka1'),
-             
+                'password' => bcrypt('lozinka1'), 
                 'uloga' => 'korisnik',
                 'one_drive_token' => 'token1'
             ],
@@ -29,7 +28,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Zika',
                 'prezime' => 'Zikić',
                 'email' => 'zika@gmail.com',
-                'lozinka' => bcrypt('lozinka2'),
+                'password' => bcrypt('lozinka2'),
               
                 'uloga' => 'korisnik',
                 'one_drive_token' => 'token2'
@@ -38,7 +37,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Marko',
                 'prezime' => 'Marković',
                 'email' => 'marko@gmail.com',
-                'lozinka' => bcrypt('lozinka3'),
+                'password' => bcrypt('lozinka3'),
              
                 'uloga' => 'korisnik',
                 'one_drive_token' => 'token3'
@@ -47,7 +46,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Jelena',
                 'prezime' => 'Jovanović',
                 'email' => 'jelena@gmail.com',
-                'lozinka' => bcrypt('lozinka4'),
+                'password' => bcrypt('lozinka4'),
             
                 'uloga' => 'korisnik',
                 'one_drive_token' => 'token4'
@@ -56,7 +55,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Milan',
                 'prezime' => 'Milinković',
                 'email' => 'milan@gmail.com',
-                'lozinka' => bcrypt('lozinka5'),
+                'password' => bcrypt('lozinka5'),
               
                 'uloga' => 'korisnik',
                 'one_drive_token' => 'token5'
@@ -65,7 +64,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Ana',
                 'prezime' => 'Anić',
                 'email' => 'ana@gmail.com',
-                'lozinka' => bcrypt('lozinka6'),
+                'password' => bcrypt('lozinka6'),
              
                 'uloga' => 'zaposleni',
                 'one_drive_token' => 'token6'
@@ -74,7 +73,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Stefan',
                 'prezime' => 'Stefanović',
                 'email' => 'stefan@gmail.com',
-                'lozinka' => bcrypt('lozinka7'),
+                'password' => bcrypt('lozinka7'),
               
                 'uloga' => 'zaposleni',
                 'one_drive_token' => 'token7'
@@ -83,7 +82,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Milica',
                 'prezime' => 'Milić',
                 'email' => 'milica@gmail.com',
-                'lozinka' => bcrypt('lozinka8'),
+                'password' => bcrypt('lozinka8'),
            
                 'uloga' => 'zaposleni',
                 'one_drive_token' => 'token8'
@@ -92,7 +91,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Nenad',
                 'prezime' => 'Nenadić',
                 'email' => 'nenad@gmail.com',
-                'lozinka' => bcrypt('lozinka9'),
+                'password' => bcrypt('lozinka9'),
               
                 'uloga' => 'zaposleni',
                 'one_drive_token' => 'token9'
@@ -101,7 +100,7 @@ class UserSeeder extends Seeder
                 'ime' => 'Maja',
                 'prezime' => 'Majić',
                 'email' => 'maja@gmail.com',
-                'lozinka' => bcrypt('lozinka10'),
+                'password' => bcrypt('lozinka10'),
               
                 'uloga' => 'zaposleni',
                 'one_drive_token' => 'token10'
