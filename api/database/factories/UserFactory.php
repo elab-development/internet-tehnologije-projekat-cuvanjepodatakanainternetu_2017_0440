@@ -21,8 +21,7 @@ class UserFactory extends Factory
             'ime' => $this->faker->firstName,
             'prezime' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
-            'password' => bcrypt('password'),  
-          
+            'password' => bcrypt('password'),   
             'uloga' => $this->faker->randomElement(['admin', 'korisnik']),
             'one_drive_token' => Str::random(40),  
         ];
