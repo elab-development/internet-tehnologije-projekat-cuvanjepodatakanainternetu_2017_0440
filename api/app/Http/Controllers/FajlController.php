@@ -183,7 +183,7 @@ class FajlController extends Controller
     }
 
     $fajlovi = $query->get();
-
+    
     return response()->json(['fajlovi' => FajlResource::collection($fajlovi)], 200);
 }
 
