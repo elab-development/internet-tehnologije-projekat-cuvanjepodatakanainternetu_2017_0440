@@ -110,5 +110,7 @@ class UserSeeder extends Seeder
         foreach ($korisnici as $korisnik) {
             User::create($korisnik);
         }
+
+        User::factory(10)->create();
     }
 }

@@ -17,16 +17,21 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::resource('firme', FirmaController::class);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
+
+
+
 Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
 Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'user']);
 
+//
+Route::resource('fajlovi', FajlController::class);;
+Route::middleware('auth:sanctum')->get('fajlovi/pretraga', [FajlController::class,'pretrazi']);
+//Route::middleware('auth:sanctum')->
 
-Route::resource('firme', FirmaController::class);
-Route::get('fajlovi/pretraga', [FajlController::class,'pretrazi']);
-Route::resource('fajlovi', FajlController::class);
-Route::prefix('radi')->group(function () {
+Route::middleware('auth:sanctum')->prefix('radi')->group(function () {
     Route::post('/', [RadiController::class, 'store']);
     Route::get('/{firma_id}', [RadiController::class, 'index']);
 });
