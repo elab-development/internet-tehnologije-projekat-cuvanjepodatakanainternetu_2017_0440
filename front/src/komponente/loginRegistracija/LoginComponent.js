@@ -1,6 +1,9 @@
 
 import React, { useState } from 'react';
 import './LoginComponent.css';
+import InputField from './InputField';
+
+
 
 const LoginComponent = () => {
   const [email, setEmail] = useState('');
@@ -8,7 +11,6 @@ const LoginComponent = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   
     console.log('Login with:', email, password);
   };
 
@@ -17,28 +19,20 @@ const LoginComponent = () => {
       <div className="login-form">
         <h2>Member Login</h2>
         <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <input 
-              type="email" 
-              name="email" 
-              id="email" 
-              placeholder="Email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              required 
-            />
-          </div>
-          <div className="input-group">
-            <input 
-              type="password" 
-              name="password" 
-              id="password" 
-              placeholder="Password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required 
-            />
-          </div>
+          <InputField 
+            type="email" 
+            name="email" 
+            placeholder="Email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+          />
+          <InputField 
+            type="password" 
+            name="password" 
+            placeholder="Password" 
+            value={password} 
+            onChange={(e) => setPassword(e.target.value)} 
+          />
           <button type="submit" className="login-button">LOGIN</button>
         </form>
         <div className="login-footer">
