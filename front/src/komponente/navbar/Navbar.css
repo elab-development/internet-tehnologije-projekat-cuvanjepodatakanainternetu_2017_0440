@@ -7,7 +7,8 @@
   }
   
   .navbar {
-    background-color: var(--primary-color);
+    background-color: var( --tertiary-color);
+  
     padding: 10px 0;
     text-align: center;
   }
@@ -24,7 +25,7 @@
   
   .navbar-item a {
     text-decoration: none;
-    color: var(--quaternary-color);
+    color: black;
     font-weight: bold;
   }
   
