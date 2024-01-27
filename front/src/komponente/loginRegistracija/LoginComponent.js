@@ -1,17 +1,26 @@
 
 import React, { useState } from 'react';
+import axios from 'axios';
 import './LoginComponent.css';
 import InputField from './InputField';
-
-
 
 const LoginComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Login with:', email, password);
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/api/login', {
+        email,
+        password
+      });
+     
+      sessionStorage.setItem('token', response.data.token);
+      console.log('Login successful:', response.data);
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   };
 
   return (

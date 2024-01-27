@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -28,7 +29,7 @@ class AuthController extends Controller
             'ime' => $request->input('ime'),
             'prezime' => $request->input('prezime'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
+            'password' => Hash::make($request->input('password')),
             
             'uloga' => $request->input('uloga'),
         ]);
@@ -39,7 +40,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
-        
+      
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
             $token = $user->createToken('token-name')->plainTextToken;
