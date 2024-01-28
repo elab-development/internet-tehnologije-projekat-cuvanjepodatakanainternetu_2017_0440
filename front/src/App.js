@@ -5,13 +5,15 @@ import LoginComponent from './komponente/loginRegistracija/LoginComponent';
 import RegistrationComponent from './komponente/loginRegistracija/RegistrationComponent';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  
 import Navbar from './komponente/navbar/Navbar';
+import { useState } from 'react';
 function App() {
+  const [token,setToken]=useState(null);
   return (
     <Router>
-        <Navbar></Navbar>
+       <Navbar  token={token} setToken={setToken}/>
         <Routes>
           <Route path="/" element={<Pocetna />} />
-          <Route path="/login" element={<LoginComponent />} />
+          <Route path="/login" element={<LoginComponent setToken={setToken} />} />
           <Route path="/registration" element={<RegistrationComponent />} />
         </Routes>
      

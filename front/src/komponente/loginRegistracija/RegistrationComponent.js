@@ -75,7 +75,7 @@ const RegistrationComponent = () => {
           <button type="submit" className="login-button">Register</button>
         </form>
         <div className="login-footer">
-          <a href="#login">Already have an account? Log in →</a>
+          <a href="/login">Already have an account? Log in →</a>
         </div>
       </div>
     </div>

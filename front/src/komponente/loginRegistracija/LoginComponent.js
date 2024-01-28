@@ -4,7 +4,7 @@ import axios from 'axios';
 import './LoginComponent.css';
 import InputField from './InputField';
 
-const LoginComponent = () => {
+const LoginComponent = ({setToken}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -17,6 +17,7 @@ const LoginComponent = () => {
       });
      
       sessionStorage.setItem('token', response.data.token);
+      setToken(response.data.token);
       console.log('Login successful:', response.data);
     } catch (error) {
       console.error('Login failed:', error);
@@ -45,8 +46,8 @@ const LoginComponent = () => {
           <button type="submit" className="login-button">LOGIN</button>
         </form>
         <div className="login-footer">
-          <a href="#forgot">Forgot Username / Password?</a>
-          <a href="#signup">Create your Account →</a>
+          {/* <a href="#forgot">Forgot Username / Password?</a> */}
+          <a href="/registration">Create your Account →</a>
         </div>
       </div>
     </div>
