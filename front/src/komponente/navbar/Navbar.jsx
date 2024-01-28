@@ -36,10 +36,13 @@ function Navbar({ token, setToken }) {
             </li>
           </>
         )}
-        {token && (
+        {token && (<>
+            <li className="navbar-item">
+            <Link to="/firme">Firme</Link>
+            </li>
           <li className="navbar-item">
             <button className="logout-button" onClick={handleLogout}>Logout</button>
-          </li>
+          </li></>
         )}
       </ul>
     </nav>

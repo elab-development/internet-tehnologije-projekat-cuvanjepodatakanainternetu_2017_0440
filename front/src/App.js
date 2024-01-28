@@ -6,6 +6,7 @@ import RegistrationComponent from './komponente/loginRegistracija/RegistrationCo
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';  
 import Navbar from './komponente/navbar/Navbar';
 import { useState } from 'react';
+import Firme from './komponente/firme/Firme';
 function App() {
   const [token,setToken]=useState(null);
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Pocetna />} />
           <Route path="/login" element={<LoginComponent setToken={setToken} />} />
           <Route path="/registration" element={<RegistrationComponent />} />
+          <Route path="/firme" element={<Firme />} />
         </Routes>
      
     </Router>
