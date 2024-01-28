@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Firma from './Firma';
-import './Firma';
+import './Firma.css';
 
 const Firme = () => {
   const [firme, setFirme] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortOrder, setSortOrder] = useState("asc");  
   const token = sessionStorage.getItem('token');
 
   useEffect(() => {
@@ -26,8 +27,27 @@ const Firme = () => {
     setSearchTerm(value.toLowerCase());
   };
 
-  const filteredFirme = firme.filter((firma) => {
-    const { naziv, PIB, vlasnik,adresa } = firma;
+  const toggleSortOrder = () => {
+    
+    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+  };
+
+  const sortedFirme = [...firme].sort((a, b) => {
+    
+    const firmaA = a.naziv.toLowerCase();
+    const firmaB = b.naziv.toLowerCase();
+
+    if (firmaA < firmaB) {
+      return sortOrder === "asc" ? -1 : 1;
+    }
+    if (firmaA > firmaB) {
+      return sortOrder === "asc" ? 1 : -1;
+    }
+    return 0;
+  });
+
+  const filteredFirme = sortedFirme.filter((firma) => {
+    const { naziv, PIB, vlasnik, adresa } = firma;
     const vlasnikImePrezime = `${vlasnik.ime} ${vlasnik.prezime}`.toLowerCase();
 
     return (
@@ -47,6 +67,11 @@ const Firme = () => {
           placeholder="Pretraži firmu..."
           onChange={(e) => handleSearch(e.target.value)}
         />
+      </div>
+      <div className="sort-container">
+        <button onClick={toggleSortOrder}>
+          Sortiraj po nazivu: {sortOrder === "asc" ? "Rastuće" : "Opadajuće"}
+        </button>
       </div>
       <table className="firme-table">
         <thead>
