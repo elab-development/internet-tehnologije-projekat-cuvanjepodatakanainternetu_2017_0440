@@ -66,7 +66,7 @@ const StockPrices = () => {
             className="search-input"
         />
         <ReactPaginate
-            pageCount={Math.ceil(stockPrices.length / itemsPerPage)}
+            pageCount={Math.ceil(displayedStockPrices.length / itemsPerPage)}
             pageRangeDisplayed={5} // Broj prikazanih stranica u paginaciji
             marginPagesDisplayed={2} // Broj stranica koje će biti prikazane pre i posle trenutne stranice
             previousLabel={'Previous'}

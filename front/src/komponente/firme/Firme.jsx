@@ -5,27 +5,10 @@ import './Firma.css';
 import useFirme from '../kuke/useFirme';
 
 const Firme = () => {
-
-   
-  
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("asc");  
   const token = sessionStorage.getItem('token');
   const { firme, loading, error } = useFirme('http://127.0.0.1:8000/api/firme', token);
-//   const [firme, setFirme] = useState([]);
-//   useEffect(() => {
-//     axios.get('http://127.0.0.1:8000/api/firme', {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     })
-//       .then((response) => {
-//         setFirme(response.data.firme);
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//       });
-//   }, [token]);
 
   const handleSearch = (value) => {
     setSearchTerm(value.toLowerCase());

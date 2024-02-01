@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './LoginComponent.css';
+import { useNavigate } from 'react-router-dom';
 
 const InputField = ({ type, name, placeholder, value, onChange }) => (
   <div className="input-group">
@@ -22,7 +23,7 @@ const RegistrationComponent = () => {
   const [prezime, setPrezime] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
+  let navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -34,6 +35,7 @@ const RegistrationComponent = () => {
         uloga: 'korisnik'  
       });
       console.log('Registration successful:', response.data);
+      navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
     }
