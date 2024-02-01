@@ -32,3 +32,37 @@
     color: var(--secondary-color);
   }
   
+
+  .pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: center;  
+    gap: 8px; 
+  }
+  
+  .pagination li a {
+    border: 1px solid #e4c1f9;  
+    color: #f694c1;  
+    background-color: #d3f8e2;  
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;  
+    transition: background-color 0.3s, color 0.3s; 
+  }
+  
+  .pagination li a:hover {
+    background-color: #a9def9;  
+    color: #ede7b1;  
+  }
+  
+  .pagination .active a {
+    background-color: #f694c1;  
+    color: #d3f8e2;  
+    border-color: #a9def9;  
+  }
+  
+  .pagination .break a {
+    pointer-events: none; 
+  }
+  

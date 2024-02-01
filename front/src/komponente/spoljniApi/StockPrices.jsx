@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import StockRow from './StockRow';
-
+import ReactPaginate from 'react-paginate';
 const StockPrices = () => {
   const [stockPrices, setStockPrices] = useState([]);
   const apiKey = 'irvNlWP5UMn7uBeOhIwIsey9rehSVNoPOKj1v9Ez';  
@@ -24,7 +24,8 @@ const StockPrices = () => {
     { symbol: 'KO', name: 'The Coca-Cola Company' },
     { symbol: 'PG', name: 'Procter & Gamble Company' },
   ];
-  
+  const [currentPage, setCurrentPage] = useState(0);
+    const itemsPerPage =5;
 
   useEffect(() => {
     companies.forEach(company => {
@@ -40,9 +41,23 @@ const StockPrices = () => {
     });
   }, []);
   
-
+  const startIndex = currentPage * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  
+  const displayedStockPrices = stockPrices.slice(startIndex, endIndex);
   return (
     <div className="firme-container">
+        <ReactPaginate
+            pageCount={Math.ceil(stockPrices.length / itemsPerPage)}
+            pageRangeDisplayed={5} // Broj prikazanih stranica u paginaciji
+            marginPagesDisplayed={2} // Broj stranica koje će biti prikazane pre i posle trenutne stranice
+            previousLabel={'Previous'}
+            nextLabel={'Next'}
+            breakLabel={'...'}
+            onPageChange={({ selected }) => setCurrentPage(selected)}
+            containerClassName={'pagination'}
+            activeClassName={'active'}
+            />
       <table className="firme-table">
         <thead>
           <tr>
@@ -54,7 +69,7 @@ const StockPrices = () => {
           </tr>
         </thead>
         <tbody>
-          {stockPrices.map((stock, index) => (
+          {displayedStockPrices.map((stock, index) => (
            <StockRow
                 key={index}
                 ticker={stock.ticker}

@@ -34,6 +34,9 @@ function Navbar({ token, setToken }) {
             <li className="navbar-item">
               <Link to="/registration">Registracija</Link>
             </li>
+            <li className="navbar-item">
+              <Link to="/stocks">Stocks</Link>
+            </li>
           </>
         )}
         {token && (<>
