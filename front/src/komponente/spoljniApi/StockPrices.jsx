@@ -26,7 +26,7 @@ const StockPrices = () => {
   ];
   const [currentPage, setCurrentPage] = useState(0);
     const itemsPerPage =5;
-
+    const [searchQuery, setSearchQuery] = useState('');
   useEffect(() => {
     companies.forEach(company => {
       const { symbol } = company;  
@@ -41,12 +41,30 @@ const StockPrices = () => {
     });
   }, []);
   
+
+  //za pretragu
+  const filteredStockPrices = stockPrices.filter(stock => 
+    (stock.name && stock.ticker) &&  
+    (
+      stock.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      stock.ticker.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+  );
+  
+  //za paginaciju
   const startIndex = currentPage * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   
-  const displayedStockPrices = stockPrices.slice(startIndex, endIndex);
+  const displayedStockPrices = filteredStockPrices.slice(startIndex, endIndex);
   return (
     <div className="firme-container">
+            <input
+            type="text"
+            placeholder="Search by ticker or name"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="search-input"
+        />
         <ReactPaginate
             pageCount={Math.ceil(stockPrices.length / itemsPerPage)}
             pageRangeDisplayed={5} // Broj prikazanih stranica u paginaciji
