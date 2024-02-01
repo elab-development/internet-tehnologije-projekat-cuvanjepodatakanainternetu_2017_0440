@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import StockRow from './StockRow';
 
 const StockPrices = () => {
   const [stockPrices, setStockPrices] = useState([]);
@@ -54,13 +55,14 @@ const StockPrices = () => {
         </thead>
         <tbody>
           {stockPrices.map((stock, index) => (
-            <tr key={index} className="firma-row">
-              <td>{stock.ticker}</td>
-              <td>{stock.name}</td>
-              <td>${stock.price}</td>
-              <td>{stock.exchange}</td>
-              <td>{new Date(stock.updated * 1000).toLocaleString()}</td>
-            </tr>
+           <StockRow
+                key={index}
+                ticker={stock.ticker}
+                name={stock.name}
+                price={stock.price}
+                exchange={stock.exchange}
+                updated={stock.updated}
+         />
           ))}
         </tbody>
       </table>
