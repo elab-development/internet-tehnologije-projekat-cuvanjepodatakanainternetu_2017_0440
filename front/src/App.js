@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './komponente/navbar/Navbar';
 import { useState } from 'react';
 import Firme from './komponente/firme/Firme';
+import StockPrices from './komponente/spoljniApi/StockPrices';
+// import OneDriveFiles from './komponente/onedrive/OneDriveFiles';
 function App() {
   const [token,setToken]=useState(null);
   return (
@@ -17,6 +19,10 @@ function App() {
           <Route path="/login" element={<LoginComponent setToken={setToken} />} />
           <Route path="/registration" element={<RegistrationComponent />} />
           <Route path="/firme" element={<Firme />} />
+          <Route path="/stocks" element={<StockPrices />} />
+
+
+          {/* <Route path="/onedrive" element={<OneDriveFiles />} />   dodat kod za implementaciju onedrive ali ne radi, omogucicemo ovo za seminarski rad*/}
         </Routes>
      
     </Router>
