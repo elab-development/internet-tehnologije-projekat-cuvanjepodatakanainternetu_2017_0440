@@ -7,6 +7,7 @@ use App\Http\Controllers\RadiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OneDriveController;
+use App\Http\Controllers\StatistikaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -40,6 +41,7 @@ Route::middleware('auth:sanctum')->resource('fajlovi', FajlController::class);;
 Route::middleware('auth:sanctum')->get('fajlovi/pretraga', [FajlController::class,'pretrazi']);
 //Route::middleware('auth:sanctum')->
 Route::delete('/firma/{firma_id}/zaposleni/{korisnik_id}', [RadiController::class, 'destroy']);
+Route::get('/statistika', [StatistikaController::class, 'getStatistics']); 
 
 Route::middleware('auth:sanctum')->prefix('radi')->group(function () {
     Route::post('/', [RadiController::class, 'store']);
@@ -47,6 +49,7 @@ Route::middleware('auth:sanctum')->prefix('radi')->group(function () {
     Route::get('/firme/broj-zaposlenih', [FirmaController::class, 'getEmployeeCount']);
     
 
-});
+
+}); 
 
  
