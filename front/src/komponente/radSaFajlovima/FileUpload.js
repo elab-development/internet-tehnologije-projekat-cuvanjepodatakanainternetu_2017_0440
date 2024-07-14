@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const FileUpload = () => {
   const [files, setFiles] = useState([]);
+  const [filteredFiles, setFilteredFiles] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [accessRights, setAccessRights] = useState('readonly');
   const [searchParams, setSearchParams] = useState({
@@ -10,7 +11,6 @@ const FileUpload = () => {
     naziv: ''
   });
   const token = sessionStorage.getItem("token");
-  const user = JSON.parse(sessionStorage.getItem('user')); // Pretpostavljamo da je korisnik sačuvan kao JSON string
 
   useEffect(() => {
     fetchFiles();
@@ -24,6 +24,7 @@ const FileUpload = () => {
         },
       });
       setFiles(response.data.fajlovi);
+      setFilteredFiles(response.data.fajlovi);
     } catch (error) {
       console.error('Error fetching files:', error);
     }
@@ -65,25 +66,19 @@ const FileUpload = () => {
     }
   };
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/fajlovi/pretrazi', {
-        params: searchParams,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setFiles(response.data.fajlovi);
-    } catch (error) {
-      console.error('Error searching files:', error);
-    }
+  const handleSearch = () => {
+    const { tip, naziv } = searchParams;
+    const filtered = files.filter(file =>
+      (tip === '' || file.tip === tip) &&
+      (naziv === '' || file.naziv.toLowerCase().includes(naziv.toLowerCase()))
+    );
+    setFilteredFiles(filtered);
   };
 
   return (
-    <div>
+    <div className="file-upload-container">
       <h2>Upload File</h2>
-      <form onSubmit={handleUpload}>
+      <form onSubmit={handleUpload} className="file-upload-form">
         <input type="file" onChange={handleFileChange} required />
         <input
           type="text"
@@ -96,27 +91,33 @@ const FileUpload = () => {
       </form>
 
       <h2>Search Files</h2>
-      <form onSubmit={handleSearch}>
-        <input
-          type="text"
+      <div className="file-search-form">
+        <select
           value={searchParams.tip}
           onChange={(e) => setSearchParams({ ...searchParams, tip: e.target.value })}
-          placeholder="Type"
-        />
+        >
+          <option value="">All Types</option>
+          <option value="image/jpeg">JPEG</option>
+          <option value="image/png">PNG</option>
+          <option value="application/pdf">PDF</option>
+          {/* Dodajte ostale tipove po potrebi */}
+        </select>
         <input
           type="text"
           value={searchParams.naziv}
           onChange={(e) => setSearchParams({ ...searchParams, naziv: e.target.value })}
           placeholder="Name"
         />
-        <button type="submit">Search</button>
-      </form>
+        <button type="button" onClick={handleSearch}>Search</button>
+      </div>
 
       <h2>Files</h2>
-      <ul>
-        {files.map((file) => (
-          <li key={file.id}>
-            {file.naziv} - {file.tip} - {file.velicina} bytes
+      <ul className="files-list">
+        {filteredFiles.map((file) => (
+          <li key={file.id} className="file-item">
+            <a href={`http://127.0.0.1:8000/api/fajlovi/${file.id}/download`} target="_blank" rel="noopener noreferrer" download={file.naziv}>
+              {file.naziv} - {file.tip} - {file.velicina} bytes
+            </a>
             <button onClick={() => handleDelete(file.id)}>Delete</button>
           </li>
         ))}

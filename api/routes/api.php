@@ -23,7 +23,7 @@ Route::post('/onedrive/token', [OneDriveController::class, 'getToken']);
 Route::get('/onedrive/files', [OneDriveController::class, 'getFiles']);
 Route::get('/onedrive/user', [OneDriveController::class, 'getUserId']); 
 
-
+Route::get('fajlovi/{id}/download', [FajlController::class, 'download']);
 
 Route::resource('firme', FirmaController::class);
 Route::post('register', [AuthController::class, 'register']);
@@ -45,6 +45,8 @@ Route::middleware('auth:sanctum')->prefix('radi')->group(function () {
     Route::post('/', [RadiController::class, 'store']);
     Route::get('/{firma_id}', [RadiController::class, 'index']);
     Route::get('/firme/broj-zaposlenih', [FirmaController::class, 'getEmployeeCount']);
+    
+
 });
 
  
