@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\FirmaResource;
 use App\Models\Firma;
+use App\Models\User; // Dodajte ovaj import
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; // Dodajte ovaj import
 use Illuminate\Support\Facades\Validator;
 
 class FirmaController extends Controller
@@ -17,17 +19,7 @@ class FirmaController extends Controller
     public function index()
     {
         $firme = Firma::all();
-        return response()->json(['firme' => FirmaResource::collection( $firme)], 200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(['firme' => FirmaResource::collection($firme)], 200);
     }
 
     /**
@@ -50,43 +42,30 @@ class FirmaController extends Controller
             return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        $firma = Firma::create($request->all());
-        return response()->json(['firma' => $firma], 201);
-    }
+        DB::beginTransaction();
+        try {
+            $firma = Firma::create($request->all());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Firma  $firma
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $firma = Firma::find($id);
+            // Ažurirajte ulogu vlasnika
+            $vlasnik = User::find($request->input('vlasnik_id'));
+            if ($vlasnik) {
+                $vlasnik->uloga = 'vlasnik';
+                $vlasnik->save();
+            }
 
-        if (!$firma) {
-            return response()->json(['message' => 'Firma not found'], 404);
+            DB::commit();
+            return response()->json(['firma' => new FirmaResource($firma)], 201);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Error creating firma', 'error' => $e->getMessage()], 500);
         }
-
-        return response()->json(['firma' => $firma], 200);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Firma  $firma
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Firma $firma)
-    {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Firma  $firma
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -109,14 +88,21 @@ class FirmaController extends Controller
             return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        $firma->update($request->all());
-        return response()->json(['firma' => $firma], 200);
+        DB::beginTransaction();
+        try {
+            $firma->update($request->all());
+            DB::commit();
+            return response()->json(['firma' => new FirmaResource($firma)], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Error updating firma', 'error' => $e->getMessage()], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Firma  $firma
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -127,7 +113,26 @@ class FirmaController extends Controller
             return response()->json(['message' => 'Firma not found'], 404);
         }
 
-        $firma->delete();
-        return response()->json(['message' => 'Firma deleted'], 200);
+        DB::beginTransaction();
+        try {
+            $vlasnikId = $firma->vlasnik_id;
+            $firma->delete();
+
+            // Proverite da li vlasnik ima još firmi
+            $brojFirmi = Firma::where('vlasnik_id', $vlasnikId)->count();
+            if ($brojFirmi == 0) {
+                $vlasnik = User::find($vlasnikId);
+                if ($vlasnik) {
+                    $vlasnik->uloga = 'zaposleni';
+                    $vlasnik->save();
+                }
+            }
+
+            DB::commit();
+            return response()->json(['message' => 'Firma deleted'], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Error deleting firma', 'error' => $e->getMessage()], 500);
+        }
     }
 }
