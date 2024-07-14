@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Radi;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -14,17 +15,19 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'ime' => $this->ime,
-            'prezime' => $this->prezime,
-            'email' => $this->email,
-            'firma' => $this->firma,
-            'uloga' => $this->uloga,
-            'one_drive_token' => $this->one_drive_token,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-          
-        ];
+      // Pronađi firmu u kojoj je korisnik zaposlen
+      $firmaId = Radi::where('korisnik_id', $this->id)->pluck('firma_id')->first();
+
+      return [
+          'id' => $this->id,
+          'ime' => $this->ime,
+          'prezime' => $this->prezime,
+          'email' => $this->email,
+          'firma_id' => $firmaId,
+          'uloga' => $this->uloga,
+          'one_drive_token' => $this->one_drive_token,
+          'created_at' => $this->created_at,
+          'updated_at' => $this->updated_at,
+      ];
     }
 }

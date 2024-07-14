@@ -146,4 +146,6 @@ class FirmaController extends Controller
 
         return response()->json(['firme' => FirmaResource::collection($firme)], 200);
     }
+
+    
 }

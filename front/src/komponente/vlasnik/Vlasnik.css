@@ -1,28 +1,105 @@
 .vlasnik-container {
-    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .firme-grid {
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+    background-color: #d3f8e2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+.firme-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-  }
-  
-  .firma-card {
-    background-color: #ede7b1; 
+    margin-bottom: 20px;
+}
+
+.firma-card {
+    background-color: #e4c1f9;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    max-width: 200px;
     text-align: center;
-  }
-  
-  .firma-card h2 {
-    font-size: 18px;
-    margin: 0;
-  }
-  
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.firma-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.add-zaposleni-form {
+    background-color: #ede7b1;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.add-zaposleni-form input,
+.add-zaposleni-form select,
+.add-zaposleni-form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.add-zaposleni-form button {
+    background-color: #e4c1f9;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-zaposleni-form button:hover {
+    background-color: #d3b0e8;
+}
+
+.zaposleni-container {
+    background-color: #ede7b1;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.zaposleni-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.zaposleni-table th,
+.zaposleni-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.zaposleni-table th {
+    background-color: #e4c1f9;
+}
+
+.zaposleni-table td button {
+    background-color: #e4c1f9;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.zaposleni-table td button:hover {
+    background-color: #d3b0e8;
+}

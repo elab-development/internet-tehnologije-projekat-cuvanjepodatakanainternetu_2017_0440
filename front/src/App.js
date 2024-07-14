@@ -9,7 +9,8 @@ import { useState } from 'react';
 import Firme from './komponente/firme/Firme';
 import StockPrices from './komponente/spoljniApi/StockPrices';
 import Vlasnik from './komponente/vlasnik/Vlasnik';
-// import OneDriveFiles from './komponente/onedrive/OneDriveFiles';
+import OneDriveFiles from './komponente/onedrive/OneDriveFiles'; 
+import FileUpload from './komponente/radSaFajlovima/FileUpload';
 function App() {
   const [token,setToken]=useState(null);
   return (
@@ -23,7 +24,8 @@ function App() {
           <Route path="/stocks" element={<StockPrices />} />
 
           <Route path="/vlasnik" element={<Vlasnik />} />
-          {/* <Route path="/onedrive" element={<OneDriveFiles />} />   dodat kod za implementaciju onedrive ali ne radi, omogucicemo ovo za seminarski rad*/}
+          <Route path="/onedrive" element={<OneDriveFiles />} />    {/*dodat kod za implementaciju onedrive ali ne radi, omogucicemo ovo za seminarski rad*/}
+          <Route path="/fileupload" element={<FileUpload />} />
         </Routes>
      
     </Router>
