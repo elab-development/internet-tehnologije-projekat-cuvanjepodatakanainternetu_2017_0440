@@ -4,7 +4,7 @@ import StockRow from './StockRow';
 import ReactPaginate from 'react-paginate';
 const StockPrices = () => {
   const [stockPrices, setStockPrices] = useState([]);
-  const apiKey = 'QxMU0Daw1G4sRqVm6vPxjIB216188KMvISmtSJ1K';  
+  const apiKey = 'cdBp5C7hVS7gbjOonMGK5KRnvweJwu3ie2B5TQAt';  
   const companies = [
     { symbol: 'AAPL', name: 'Apple Inc.' },
     { symbol: 'GOOGL', name: 'Alphabet Inc.' },

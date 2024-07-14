@@ -21,7 +21,7 @@ Route::resource('firme', FirmaController::class);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-
+Route::get('/vlasnici', [AuthController::class, 'getVlasnici'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
 Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'user']);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -60,5 +61,11 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json(['user' => new UserResource($request->user())], 200);
+    }
+    // Dodavanje metode getVlasnici
+    public function getVlasnici()
+    {
+        $vlasnici = User::all();
+        return response()->json(['vlasnici' => UserResource::collection($vlasnici)], 200);
     }
 }
