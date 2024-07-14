@@ -135,4 +135,15 @@ class FirmaController extends Controller
             return response()->json(['message' => 'Error deleting firma', 'error' => $e->getMessage()], 500);
         }
     }
+
+    public function getFirmeByVlasnik($vlasnik_id)
+    {
+        $firme = Firma::where('vlasnik_id', $vlasnik_id)->get();
+
+        if ($firme->isEmpty()) {
+            return response()->json(['message' => 'No firms found for this owner'], 404);
+        }
+
+        return response()->json(['firme' => FirmaResource::collection($firme)], 200);
+    }
 }

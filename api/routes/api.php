@@ -21,19 +21,22 @@ Route::resource('firme', FirmaController::class);
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-Route::get('/vlasnici', [AuthController::class, 'getVlasnici'])->middleware('auth:sanctum');
+Route::get('/vlasnici', [AuthController::class, 'getAllUsers'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
 Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'user']);
-
-//
+Route::get('/firme/vlasnik/{vlasnik_id}', [FirmaController::class, 'getFirmeByVlasnik'])->middleware('auth:sanctum');
+// Dodavanje nove rute za dobijanje zaposlenih određene firme
+Route::get('/firma/{firma_id}/zaposleni', [RadiController::class, 'index'])->middleware('auth:sanctum');
 Route::resource('fajlovi', FajlController::class);;
 Route::middleware('auth:sanctum')->get('fajlovi/pretraga', [FajlController::class,'pretrazi']);
 //Route::middleware('auth:sanctum')->
+Route::delete('/firma/{firma_id}/zaposleni/{korisnik_id}', [RadiController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->prefix('radi')->group(function () {
     Route::post('/', [RadiController::class, 'store']);
     Route::get('/{firma_id}', [RadiController::class, 'index']);
+
 });
 
  

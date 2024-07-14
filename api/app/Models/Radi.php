@@ -15,7 +15,7 @@ class Radi extends Model
     ];
 
     // Veza sa korisnikom
-    public function korisnik()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

@@ -8,6 +8,7 @@ import Navbar from './komponente/navbar/Navbar';
 import { useState } from 'react';
 import Firme from './komponente/firme/Firme';
 import StockPrices from './komponente/spoljniApi/StockPrices';
+import Vlasnik from './komponente/vlasnik/Vlasnik';
 // import OneDriveFiles from './komponente/onedrive/OneDriveFiles';
 function App() {
   const [token,setToken]=useState(null);
@@ -21,7 +22,7 @@ function App() {
           <Route path="/firme" element={<Firme />} />
           <Route path="/stocks" element={<StockPrices />} />
 
-
+          <Route path="/vlasnik" element={<Vlasnik />} />
           {/* <Route path="/onedrive" element={<OneDriveFiles />} />   dodat kod za implementaciju onedrive ali ne radi, omogucicemo ovo za seminarski rad*/}
         </Routes>
      

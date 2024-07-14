@@ -14,7 +14,7 @@ const useVlasnici = (url, token) => {
             Authorization: `Bearer ${token}`,
           },
         });
-        setVlasnici(response.data.vlasnici);
+        setVlasnici(response.data.users);
       } catch (err) {
         setError(err);
       } finally {

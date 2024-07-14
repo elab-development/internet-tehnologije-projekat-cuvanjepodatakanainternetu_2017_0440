@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class RadiResource extends JsonResource
@@ -16,7 +17,7 @@ class RadiResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'korisnik' => $this->korisnik,
+            'korisnik' => User::find($this->korisnik_id),
             'firma' => $this->firma,
             'pozicija' => $this->pozicija,
             'datum_pocetka' => $this->datum_pocetka,

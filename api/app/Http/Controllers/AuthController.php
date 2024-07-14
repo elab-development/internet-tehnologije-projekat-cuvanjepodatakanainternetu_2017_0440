@@ -62,10 +62,10 @@ class AuthController extends Controller
     {
         return response()->json(['user' => new UserResource($request->user())], 200);
     }
-    // Dodavanje metode getVlasnici
-    public function getVlasnici()
+    // Dodavanje metode getAllUsers
+    public function getAllUsers()
     {
         $vlasnici = User::all();
-        return response()->json(['vlasnici' => UserResource::collection($vlasnici)], 200);
+        return response()->json(['users' => UserResource::collection($vlasnici)], 200);
     }
 }

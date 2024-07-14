@@ -1,14 +1,14 @@
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import './LoginComponent.css';
 import InputField from './InputField';
 import { useNavigate } from 'react-router-dom';
 
-const LoginComponent = ({setToken}) => {
+const LoginComponent = ({ setToken }) => {
   const [email, setEmail] = useState('sedrick59@example.net');
   const [password, setPassword] = useState('password');
   let navigate = useNavigate();
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -18,6 +18,7 @@ const LoginComponent = ({setToken}) => {
       });
      
       sessionStorage.setItem('token', response.data.token);
+      sessionStorage.setItem('user', JSON.stringify(response.data.user)); // Čuvanje korisnika
       setToken(response.data.token);
       navigate('/firme');
       console.log('Login successful:', response.data);
@@ -48,7 +49,7 @@ const LoginComponent = ({setToken}) => {
           <button type="submit" className="login-button">LOGIN</button>
         </form>
         <div className="login-footer">
-          {/* <a href="#forgot">Forgot Username / Password?</a> */}
+       
           <a href="/registration">Create your Account →</a>
         </div>
       </div>
