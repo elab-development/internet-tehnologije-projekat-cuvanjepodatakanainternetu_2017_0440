@@ -1,56 +1,73 @@
- 
-
 .App {
-    background-color: #d3f8e2; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    height: 100vh;
-    box-sizing: border-box;
-  }
-  
-  .App-header {
-    background-color: #e4c1f9; 
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    color: #333; 
-  }
-  
-  h1 {
-    
-    margin-bottom: 20px;
-    font-size: 36px;
-  }
-  
-  p {
-    color: #333;  
-    font-size: 18px;
-    line-height: 1.5;
-  }
-  
-  .section {
-    background-color: #ede7b1; 
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .content {
-    text-align: left;
-  }
-  
-  h2 {
-     
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
- 
-  
+  background-color: #d3f8e2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.App-header {
+  background-color: #e4c1f9;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #333;
+}
+
+h1 {
+  margin-bottom: 20px;
+  font-size: 36px;
+}
+
+p {
+  color: #333;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.section {
+  background-color: #ede7b1;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+  text-align: left;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.sponsors-section .logos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.sponsors-section .logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.sponsors-section .logo-item img {
+  max-width: 100px;
+  max-height: 100px;
+  margin-bottom: 10px;
+}
+
+.sponsors-section .logo-item p {
+  font-size: 16px;
+  color: #333;
+}
