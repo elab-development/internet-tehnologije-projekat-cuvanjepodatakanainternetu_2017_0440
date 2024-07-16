@@ -26,6 +26,9 @@ const FileUpload = () => {
       setFiles(response.data.fajlovi);
       setFilteredFiles(response.data.fajlovi);
     } catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        alert(error.response.data.error);
+      }
       console.error('Error fetching files:', error);
     }
   };
@@ -49,6 +52,9 @@ const FileUpload = () => {
       });
       fetchFiles();
     } catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        alert(error.response.data.error);
+      }
       console.error('Error uploading file:', error);
     }
   };
@@ -62,6 +68,9 @@ const FileUpload = () => {
       });
       fetchFiles();
     } catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        alert(error.response.data.error);
+      }
       console.error('Error deleting file:', error);
     }
   };

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Pocetna.css';
 
-const API_KEY = 'cdBp5C7hVS7gbjOonMGK5KRnvweJwu3ie2B5TQAt';
+const API_KEY = 'zM19eZg0Jr4RhQVLUhaTPNinI23m3tFsZDzzZD1M';
 const companyNames = ['Microsoft', 'Google', 'Amazon', 'Apple', 'Facebook', 'Tesla', 'IBM', 'Intel', 'Samsung', 'Oracle'];
+const CACHE_KEY = 'logosCache';
 
 function Pocetna() {
   const [logos, setLogos] = useState([]);
@@ -11,20 +12,26 @@ function Pocetna() {
   useEffect(() => {
     const fetchLogos = async () => {
       try {
-        const logoRequests = companyNames.map(name => 
-          axios.get('https://api.api-ninjas.com/v1/logo', {
-            headers: {
-              'X-Api-Key': API_KEY
-            },
-            params: {
-              name
-            }
-          })
-        );
-        
-        const logoResponses = await Promise.all(logoRequests);
-        const logos = logoResponses.map(response => response.data[0]); // Pretpostavimo da je prvi rezultat najrelevantniji
-        setLogos(logos);
+        const cachedLogos = localStorage.getItem(CACHE_KEY);
+        if (cachedLogos) {
+          setLogos(JSON.parse(cachedLogos));
+        } else {
+          const logoRequests = companyNames.map(name => 
+            axios.get('https://api.api-ninjas.com/v1/logo', {
+              headers: {
+                'X-Api-Key': API_KEY
+              },
+              params: {
+                name
+              }
+            })
+          );
+          
+          const logoResponses = await Promise.all(logoRequests);
+          const logos = logoResponses.map(response => response.data[0]); // Pretpostavimo da je prvi rezultat najrelevantniji
+          setLogos(logos);
+          localStorage.setItem(CACHE_KEY, JSON.stringify(logos));
+        }
       } catch (error) {
         console.error('Error fetching logos:', error);
       }

@@ -4,7 +4,7 @@ import './LoginComponent.css';
 import InputField from './InputField';
 import { useNavigate } from 'react-router-dom';
 
-const LoginComponent = ({ setToken }) => {
+const LoginComponent = ({ onLogin }) => {
   const [email, setEmail] = useState('sedrick59@example.net');
   const [password, setPassword] = useState('password');
   let navigate = useNavigate();
@@ -17,11 +17,21 @@ const LoginComponent = ({ setToken }) => {
         password
       });
      
-      sessionStorage.setItem('token', response.data.token);
-      sessionStorage.setItem('user', JSON.stringify(response.data.user)); // Čuvanje korisnika
-      setToken(response.data.token);
-      navigate('/firme');
-      console.log('Login successful:', response.data);
+      const { token, user } = response.data;
+      sessionStorage.setItem('token', token);
+      sessionStorage.setItem('user', JSON.stringify(user));
+      onLogin(token, user);
+
+      // Preusmeravanje na osnovu uloge korisnika
+      if (user.uloga == 'admin') {
+        navigate('/firme');
+      } else if (user.uloga == 'vlasnik') {
+        navigate('/vlasnik');
+      } else if (user.uloga == 'zaposleni') {
+        navigate('/fileupload');
+      } else {
+        navigate('/');
+      }
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -49,7 +59,6 @@ const LoginComponent = ({ setToken }) => {
           <button type="submit" className="login-button">LOGIN</button>
         </form>
         <div className="login-footer">
-       
           <a href="/registration">Create your Account →</a>
         </div>
       </div>
