@@ -1,1 +1,1 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/1IMeAlJr)
+Ova aplikacija je namenjena za upravljanje firmama i zaposlenima, gde registracijom korisnici formiraju svoju firmu i dodaju zaposlene u okviru nje. Korisnici imaju mogućnost deljenja fajlova unutar firme, sa privilegijama za uređivanje i pregled. Onaj koji kreira firmu ima ovlašćenje da upravlja zaposlenima, dodajući ih ili uklanjajući ih iz firme.
