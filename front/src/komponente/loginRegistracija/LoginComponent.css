@@ -1,0 +1,65 @@
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ede7b1; /* using the given color palette */
+}
+
+.login-form {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form h2 {
+  color: #a9def9; /* using the given color palette */
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #d3f8e2; /* using the given color palette */
+  border-radius: 5px;
+  margin-top: 0.25rem;
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  background-color: #e4c1f9; /* using the given color palette */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #f694c1; /* using the given color palette */
+}
+
+.login-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.login-footer a {
+  color: #a9def9; /* using the given color palette */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-footer a:hover {
+  color: #f694c1; /* using the given color palette */
+}

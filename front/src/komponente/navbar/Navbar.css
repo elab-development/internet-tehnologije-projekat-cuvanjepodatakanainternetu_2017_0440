@@ -1,0 +1,35 @@
+:root {
+    --primary-color: #d3f8e2;
+    --secondary-color: #e4c1f9;
+    --tertiary-color: #f694c1;
+    --quaternary-color: #ede7b1;
+    --quinary-color: #a9def9;
+  }
+  
+  .navbar {
+    background-color: var( --tertiary-color);
+  
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  .navbar-item a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .navbar-item a:hover {
+    color: var(--secondary-color);
+  }
+  
